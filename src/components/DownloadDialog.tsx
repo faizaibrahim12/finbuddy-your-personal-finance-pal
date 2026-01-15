@@ -8,6 +8,11 @@ interface DownloadDialogProps {
 }
 
 export function DownloadDialog({ open, onOpenChange }: DownloadDialogProps) {
+  // Replace these with your actual hosted installer links
+  const windowsLink = 'https://drive.google.com/uc?export=download&id=WINDOWS_FILE_ID';
+  const macLink = 'https://drive.google.com/uc?export=download&id=MAC_FILE_ID';
+  const androidLink = 'https://drive.google.com/uc?export=download&id=ANDROID_FILE_ID';
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
@@ -17,11 +22,39 @@ export function DownloadDialog({ open, onOpenChange }: DownloadDialogProps) {
           </div>
           <DialogTitle className="text-xl">Install FinBuddy</DialogTitle>
           <DialogDescription className="text-base">
-            Add FinBuddy to your home screen for quick access and offline use
+            Add FinBuddy to your device or download the installer for offline use
           </DialogDescription>
         </DialogHeader>
-        
+
         <div className="space-y-6 py-4">
+          {/* Real Installer Downloads */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Monitor className="w-5 h-5 text-muted-foreground" />
+              <h3 className="font-semibold text-foreground">Desktop / Mobile Download</h3>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Button
+                onClick={() => window.open(windowsLink, '_blank')}
+                className="w-full bg-income hover:bg-income/90 text-income-foreground"
+              >
+                Download Windows Installer
+              </Button>
+              <Button
+                onClick={() => window.open(macLink, '_blank')}
+                className="w-full bg-income hover:bg-income/90 text-income-foreground"
+              >
+                Download Mac Installer
+              </Button>
+              <Button
+                onClick={() => window.open(androidLink, '_blank')}
+                className="w-full bg-income hover:bg-income/90 text-income-foreground"
+              >
+                Download Android APK
+              </Button>
+            </div>
+          </div>
+
           {/* iOS Instructions */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
@@ -43,7 +76,7 @@ export function DownloadDialog({ open, onOpenChange }: DownloadDialogProps) {
               </li>
             </ol>
           </div>
-          
+
           {/* Android Instructions */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
@@ -65,7 +98,7 @@ export function DownloadDialog({ open, onOpenChange }: DownloadDialogProps) {
               </li>
             </ol>
           </div>
-          
+
           {/* Desktop Instructions */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
@@ -84,10 +117,10 @@ export function DownloadDialog({ open, onOpenChange }: DownloadDialogProps) {
             </ol>
           </div>
         </div>
-        
+
         <Button 
           onClick={() => onOpenChange(false)} 
-          className="w-full bg-income hover:bg-income/90 text-income-foreground"
+          className="w-full bg-income hover:bg-income/90 text-income-foreground mt-4"
         >
           Got it!
         </Button>

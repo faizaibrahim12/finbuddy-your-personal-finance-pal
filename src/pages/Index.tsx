@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TrendingUp, TrendingDown, Wallet } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { MobileNav } from '@/components/MobileNav';
@@ -6,10 +7,16 @@ import { TransactionList } from '@/components/TransactionList';
 import { BudgetProgress } from '@/components/BudgetProgress';
 import { ExpenseChart } from '@/components/ExpenseChart';
 import { AddTransactionDialog } from '@/components/AddTransactionDialog';
+import { OnboardingDialog } from '@/components/OnboardingDialog';
+import { PricingDialog } from '@/components/PricingDialog';
+import { DownloadDialog } from '@/components/DownloadDialog';
 import { useFinanceData } from '@/hooks/useFinanceData';
 
 const Index = () => {
   const { transactions, budgets, summary, expensesByCategory, addTransaction, deleteTransaction } = useFinanceData();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showPricing, setShowPricing] = useState(false);
+  const [showDownload, setShowDownload] = useState(false);
 
   return (
     <div className="min-h-screen pb-24 md:pb-8">
@@ -36,13 +43,22 @@ const Index = () => {
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-              <button className="px-6 py-3 bg-income text-income-foreground font-semibold rounded-xl hover:bg-income/90 transition-all hover:scale-105 shadow-lg shadow-income/25">
+              <button 
+                onClick={() => setShowOnboarding(true)}
+                className="px-6 py-3 bg-income text-income-foreground font-semibold rounded-xl hover:bg-income/90 transition-all hover:scale-105 shadow-lg shadow-income/25"
+              >
                 Try Free
               </button>
-              <button className="px-6 py-3 bg-card border border-border font-semibold rounded-xl hover:bg-accent transition-all hover:scale-105">
+              <button 
+                onClick={() => setShowPricing(true)}
+                className="px-6 py-3 bg-card border border-border font-semibold rounded-xl hover:bg-accent transition-all hover:scale-105"
+              >
                 Buy Pro ✨
               </button>
-              <button className="px-6 py-3 text-muted-foreground hover:text-foreground font-medium transition-colors">
+              <button 
+                onClick={() => setShowDownload(true)}
+                className="px-6 py-3 text-muted-foreground hover:text-foreground font-medium transition-colors"
+              >
                 Download App →
               </button>
             </div>
@@ -117,6 +133,11 @@ const Index = () => {
       </main>
 
       <MobileNav />
+      
+      {/* Dialogs */}
+      <OnboardingDialog open={showOnboarding} onOpenChange={setShowOnboarding} />
+      <PricingDialog open={showPricing} onOpenChange={setShowPricing} />
+      <DownloadDialog open={showDownload} onOpenChange={setShowDownload} />
     </div>
   );
 };

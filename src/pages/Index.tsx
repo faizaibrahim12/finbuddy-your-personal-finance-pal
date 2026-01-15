@@ -15,11 +15,44 @@ const Index = () => {
     <div className="min-h-screen pb-24 md:pb-8">
       <Header />
       
-      <main className="container px-4 py-6 space-y-6">
-        {/* Welcome Section */}
+      <main className="container px-4 py-6 space-y-8">
+        {/* Hero Section */}
+        <section className="relative py-8 md:py-12 text-center animate-fade-in">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-income/5 via-transparent to-transparent rounded-3xl" />
+          
+          <div className="space-y-4 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-income/10 border border-income/20 text-income text-sm font-medium">
+              <span>💰</span>
+              <span>Personal Finance Tracker</span>
+            </div>
+            
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
+              Take Control of Your <span className="text-income">Finances</span> with FinBuddy
+            </h1>
+            
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              Built for <span className="text-foreground font-medium">students</span>, <span className="text-foreground font-medium">freelancers</span>, and <span className="text-foreground font-medium">young professionals</span>. 
+              Track expenses, set budgets, and visualize your spending with beautiful charts.
+            </p>
+            
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+              <button className="px-6 py-3 bg-income text-income-foreground font-semibold rounded-xl hover:bg-income/90 transition-all hover:scale-105 shadow-lg shadow-income/25">
+                Try Free
+              </button>
+              <button className="px-6 py-3 bg-card border border-border font-semibold rounded-xl hover:bg-accent transition-all hover:scale-105">
+                Buy Pro ✨
+              </button>
+              <button className="px-6 py-3 text-muted-foreground hover:text-foreground font-medium transition-colors">
+                Download App →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Dashboard Header */}
         <div className="flex items-center justify-between animate-fade-in">
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Good morning! 👋</h1>
+            <h2 className="text-xl md:text-2xl font-bold text-foreground">Your Dashboard 👋</h2>
             <p className="text-muted-foreground mt-1">Here's your financial overview</p>
           </div>
           <AddTransactionDialog onAdd={addTransaction} />
